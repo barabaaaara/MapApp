@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="MapApp" customModuleProvider="target">
+            <connections>
+                <outlet property="pinImage" destination="B0M-z1-bM9" id="afH-jm-BqL"/>
+                <outlet property="registerButton" destination="wpI-Ei-opL" id="ccn-Mo-mQy"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpI-Ei-opL">
+                    <rect key="frame" x="85" y="782" width="244" height="40"/>
+                    <color key="backgroundColor" red="0.27378180619999998" green="0.49543273450000003" blue="0.89808064700000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="GzM-dt-V0T"/>
+                    </constraints>
+                    <state key="normal" title="喫煙可能なお店を登録">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="registerButtonTapped:" destination="-1" eventType="touchUpInside" id="kVy-LW-sYV"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="B0M-z1-bM9">
+                    <rect key="frame" x="190" y="425.5" width="34" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="34" id="6xy-6R-Flu"/>
+                        <constraint firstAttribute="height" constant="45" id="Fun-r0-Ftq"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="B0M-z1-bM9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2aJ-9A-BWK"/>
+                <constraint firstItem="wpI-Ei-opL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="85" id="A6d-Aa-KcB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wpI-Ei-opL" secondAttribute="trailing" constant="85" id="DGh-41-ket"/>
+                <constraint firstItem="B0M-z1-bM9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Pq3-ud-Li7"/>
+                <constraint firstItem="wpI-Ei-opL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="S4A-WB-2tp"/>
+                <constraint firstItem="B0M-z1-bM9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dzt-KB-6om"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wpI-Ei-opL" secondAttribute="bottom" constant="40" id="lHw-1C-8K7"/>
+                <constraint firstItem="B0M-z1-bM9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="uDC-EN-FFa"/>
+            </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="Yip-3Y-dAL" appends="YES" id="SbP-Nc-A9b"/>
+            </connections>
+            <point key="canvasLocation" x="72" y="54"/>
+        </view>
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Yip-3Y-dAL">
+            <connections>
+                <action selector="mapTapped:" destination="-1" id="dco-gb-ZjX"/>
+            </connections>
+        </pongPressGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="pin" width="48" height="59"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
