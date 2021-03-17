@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		1C7CCC000A7CCD32E76015C1 /* Pods_MapApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED63AC9D3D50748301DDA32 /* Pods_MapApp.framework */; };
 		729D72B27657ACFE45A5011C /* Pods_MapAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB0E38358FB24E9A17D8044 /* Pods_MapAppTests.framework */; };
+		940E944625F7573F00632393 /* SelectPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940E944425F7573F00632393 /* SelectPlaceViewController.swift */; };
+		940E944725F7573F00632393 /* SelectPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940E944525F7573F00632393 /* SelectPlaceViewController.xib */; };
+		940E944C25F795BF00632393 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940E944B25F795BF00632393 /* MapModel.swift */; };
 		949E414825EA5D6C00A6DD75 /* TopHalfModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949E414625EA5D6C00A6DD75 /* TopHalfModalViewController.swift */; };
 		949E414925EA5D6C00A6DD75 /* TopHalfModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E414725EA5D6C00A6DD75 /* TopHalfModalViewController.xib */; };
+		949E90E825F507A0002461EE /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949E90E625F507A0002461EE /* AddViewController.swift */; };
+		949E90E925F507A0002461EE /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E90E725F507A0002461EE /* AddViewController.xib */; };
 		94A4F64E25E23E2800BD0320 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A4F64D25E23E2800BD0320 /* AppDelegate.swift */; };
 		94A4F65725E23E2A00BD0320 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94A4F65625E23E2A00BD0320 /* Assets.xcassets */; };
 		94A4F65A25E23E2A00BD0320 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94A4F65825E23E2A00BD0320 /* LaunchScreen.storyboard */; };
@@ -48,8 +53,13 @@
 		590479228AD17CE7FA47A68D /* Pods_MapApp_MapAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapApp_MapAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAEBEFEBCA764DD097CE1E6 /* Pods-MapAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapAppTests.debug.xcconfig"; path = "Target Support Files/Pods-MapAppTests/Pods-MapAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		694F71D003EFEB0D1E7A8A92 /* Pods-MapApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapApp.debug.xcconfig"; path = "Target Support Files/Pods-MapApp/Pods-MapApp.debug.xcconfig"; sourceTree = "<group>"; };
+		940E944425F7573F00632393 /* SelectPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPlaceViewController.swift; sourceTree = "<group>"; };
+		940E944525F7573F00632393 /* SelectPlaceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPlaceViewController.xib; sourceTree = "<group>"; };
+		940E944B25F795BF00632393 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		949E414625EA5D6C00A6DD75 /* TopHalfModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHalfModalViewController.swift; sourceTree = "<group>"; };
 		949E414725EA5D6C00A6DD75 /* TopHalfModalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopHalfModalViewController.xib; sourceTree = "<group>"; };
+		949E90E625F507A0002461EE /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		949E90E725F507A0002461EE /* AddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
 		94A4F64A25E23E2800BD0320 /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A4F64D25E23E2800BD0320 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94A4F65625E23E2A00BD0320 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,6 +116,17 @@
 			path = Top;
 			sourceTree = "<group>";
 		};
+		949E90ED25F507B8002461EE /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				949E90E625F507A0002461EE /* AddViewController.swift */,
+				949E90E725F507A0002461EE /* AddViewController.xib */,
+				940E944425F7573F00632393 /* SelectPlaceViewController.swift */,
+				940E944525F7573F00632393 /* SelectPlaceViewController.xib */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
 		94A4F64125E23E2800BD0320 = {
 			isa = PBXGroup;
 			children = (
@@ -131,8 +152,10 @@
 		94A4F64C25E23E2800BD0320 /* MapApp */ = {
 			isa = PBXGroup;
 			children = (
+				940E944B25F795BF00632393 /* MapModel.swift */,
 				94A4F64D25E23E2800BD0320 /* AppDelegate.swift */,
 				949E414225EA5D2400A6DD75 /* Top */,
+				949E90ED25F507B8002461EE /* Add */,
 				94A4F65625E23E2A00BD0320 /* Assets.xcassets */,
 				94A4F65825E23E2A00BD0320 /* LaunchScreen.storyboard */,
 				94A4F65B25E23E2A00BD0320 /* Info.plist */,
@@ -292,6 +315,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				949E90E925F507A0002461EE /* AddViewController.xib in Resources */,
+				940E944725F7573F00632393 /* SelectPlaceViewController.xib in Resources */,
 				94A4F65A25E23E2A00BD0320 /* LaunchScreen.storyboard in Resources */,
 				949E414925EA5D6C00A6DD75 /* TopHalfModalViewController.xib in Resources */,
 				94A4F65725E23E2A00BD0320 /* Assets.xcassets in Resources */,
@@ -459,7 +484,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				949E414825EA5D6C00A6DD75 /* TopHalfModalViewController.swift in Sources */,
+				940E944625F7573F00632393 /* SelectPlaceViewController.swift in Sources */,
 				94A4F6B525E2455C00BD0320 /* ViewController.swift in Sources */,
+				949E90E825F507A0002461EE /* AddViewController.swift in Sources */,
+				940E944C25F795BF00632393 /* MapModel.swift in Sources */,
 				94A4F64E25E23E2800BD0320 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

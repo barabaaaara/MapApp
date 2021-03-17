@@ -54,16 +54,8 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wpI-Ei-opL" secondAttribute="bottom" constant="40" id="lHw-1C-8K7"/>
                 <constraint firstItem="B0M-z1-bM9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="uDC-EN-FFa"/>
             </constraints>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="Yip-3Y-dAL" appends="YES" id="SbP-Nc-A9b"/>
-            </connections>
             <point key="canvasLocation" x="72" y="54"/>
         </view>
-        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Yip-3Y-dAL">
-            <connections>
-                <action selector="mapTapped:" destination="-1" id="dco-gb-ZjX"/>
-            </connections>
-        </pongPressGestureRecognizer>
     </objects>
     <resources>
         <image name="pin" width="48" height="59"/>

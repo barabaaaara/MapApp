@@ -1,41 +1,35 @@
-//
-//  ViewController.swift
-//  MapApp
-//
-//  Created by 桑原佑輔 on 2021/02/21.
-//
-
-import UIKit
+import UIKit //元から入っているフレームワーク（外枠的なやつ）
 import Firebase
 import GoogleMaps
 import GooglePlaces
 import FloatingPanel
 
+//ViewControllerクラスはUIViewController・・・を継承している
+//GPSの位置情報や電子コンパスの機能を使いたい場合はCLLocationManagerDelegate
 class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
-    var locationManager = CLLocationManager()
-    lazy var mapView = GMSMapView()
+    var locationManager = CLLocationManager() //CLLocationManagerを定義
+    var fpc = FloatingPanelController() //FlotingPanelを定義
+    lazy var mapView = GMSMapView() //lazyって何？？　インポートしたGooglemapsを定義してる
+    var latitude: String? //緯度は”String型だと定義している”
+    var longitude: String? //経度は”String型だと定義している”
     @IBOutlet weak var pinImage: UIImageView!
-    var fpc = FloatingPanelController()
     @IBOutlet weak var registerButton: UIButton!
-    @IBAction func mapTapped(_ sender: UILongPressGestureRecognizer) {
-    }
+    
     @IBAction func registerButtonTapped(_ sender: Any) {
-        let contentVC = TopHalfModalViewController()
-        fpc.set(contentViewController: contentVC)
-        fpc.layout = MyFloatingPanelLayout()
-        fpc.isRemovalInteractionEnabled = true
-        pinImage.isHidden = false
-        
-        self.present(fpc, animated: true, completion: nil)
-        
-        
+        let contentVC = TopHalfModalViewController() //TopHalfModalViewControllerへ遷移
+        contentVC.vc = self //これは何？
+        fpc.set(contentViewController: contentVC) //fpcをセットする？（contentViewControllerはcontentVCを使用する）
+        fpc.layout = MyFloatingPanelLayout() //fpcのレイアウトはMyFloatingPanelLayoutを使う
+        fpc.isRemovalInteractionEnabled = true //
+        pinImage.isHidden = false //タップされたらpinの非表示を解除する
+        self.present(fpc, animated: true, completion: nil) //
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let picture = UIImage(named: "plus")
+        let picture = UIImage(named: "plus") //"Plusという画像を使用する"
         self.registerButton.setImage(picture, for:.normal)
         registerButton.layer.cornerRadius = 20.0
         registerButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
@@ -66,41 +60,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         self.view.addSubview(mapView)
         self.view.sendSubviewToBack(mapView)
         //        self.view.bringSubviewToFront(mapView)
+        print(getCenterPoint())
         
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation = locations.last
-        
-        let camera = GMSCameraPosition.camera(withLatitude: userLocation!.coordinate.latitude,
-                                              longitude: userLocation!.coordinate.latitude, zoom: 17.0)
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        marker.map = mapView
-        
-        
-        self.mapView.animate(to: camera)
-        
-        
-        
-        
-        func didReceiveMemoryWarning() {
-            super.didReceiveMemoryWarning()
-            // Dispose of any resources that can be recreated.
-        }
-        
-        func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
-            UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-            image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
-            let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-            UIGraphicsEndImageContext()
-            return newImage
-        }
-        
-        
-        locationManager.stopUpdatingLocation()
+    
+    
+    func getCenterPoint() -> CLLocationCoordinate2D {
+        return mapView.projection.coordinate(for: mapView.center)
     }
     
     //    @IBAction func save(_ sender: Any) {
@@ -119,12 +86,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     
 }
 
+//フローティングパネルのレイアウト
 class MyFloatingPanelLayout: FloatingPanelLayout {
     let position: FloatingPanelPosition = .bottom
     let initialState: FloatingPanelState = .tip
     var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
-        return [
-            .tip: FloatingPanelLayoutAnchor(absoluteInset: 90.0, edge: .bottom, referenceGuide: .safeArea),
+        return [.tip: FloatingPanelLayoutAnchor(absoluteInset: 90.0, edge: .bottom, referenceGuide: .safeArea),
         ]
     }
 }
