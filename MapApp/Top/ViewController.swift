@@ -13,6 +13,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     lazy var mapView = GMSMapView() //lazyって何？？　インポートしたGooglemapsを定義してる
     var latitude: String? //緯度は”String型だと定義している”
     var longitude: String? //経度は”String型だと定義している”
+    var zoomLevel: String?
     @IBOutlet weak var pinImage: UIImageView!
     @IBOutlet weak var registerButton: UIButton!
     
@@ -24,6 +25,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         fpc.isRemovalInteractionEnabled = true //
         pinImage.isHidden = false //タップされたらpinの非表示を解除する
         self.present(fpc, animated: true, completion: nil) //
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -31,7 +34,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         let picture = UIImage(named: "plus") //"Plusという画像を使用する"
         self.registerButton.setImage(picture, for:.normal)
-        registerButton.layer.cornerRadius = 20.0
+        registerButton.layer.cornerRadius = 20.0 //ボタンの角を丸くする（幅の半分ぐらいが良い）
         registerButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
         registerButton.layer.shadowColor = UIColor.black.cgColor
         registerButton.layer.shadowOpacity = 0.3
@@ -62,7 +65,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         //        self.view.bringSubviewToFront(mapView)
         print(getCenterPoint())
         
+        
+        let docRef = Firestore.firestore().collection("map")
+        
+        Firestore.firestore().collection("map").getDocuments { (snaps, error) in
+        }
+        docRef.getDocuments{ (document, error) in
+            if let error = error{
+                print(error)
+            }
+            guard let document = document else { return }
+            for document in document.documents {
+                let map = MapModel()
+                guard case map.coordinate = document.data()["zahyo"] as? GeoPoint else { return  }
+                print(map.coordinate.longitude)
+            }
+        }
+        
+        
     }
+    
+//    起動したら現在地を取得し、表示する（アプリ起動時に現在地が表示される）
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation = locations.last
+        
+        let camera = GMSCameraPosition.camera(withLatitude: userLocation!.coordinate.latitude,
+                                              longitude: userLocation!.coordinate.longitude, zoom: 17.0)
+        self.mapView.animate(to: camera)
+        
+        locationManager.stopUpdatingLocation()
+    }
+    
     
     
     
@@ -70,19 +103,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         return mapView.projection.coordinate(for: mapView.center)
     }
     
-    //    @IBAction func save(_ sender: Any) {
-    //        let db = Firestore.firestore()
-    //
-    //        db.collection("map").document("79qzrWdUkhvI84Nd8BfQ").delete() { err in
-    //            if let err = err {
-    //                print("Error removing document: \(err)")
-    //            } else {
-    //                print("Document successfully removed!")
-    //            }
-    //        }
-    //
-    //
-    //    }
+    
     
 }
 

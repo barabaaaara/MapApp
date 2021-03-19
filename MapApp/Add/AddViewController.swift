@@ -8,6 +8,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import Firebase
 
 
 class AddViewController: UIViewController,CLLocationManagerDelegate, GMSMapViewDelegate{
@@ -22,6 +23,7 @@ class AddViewController: UIViewController,CLLocationManagerDelegate, GMSMapViewD
     @IBOutlet weak var addMapView: UIView!
     
     
+    
     @IBOutlet weak var storeName: UITextField!
     @IBOutlet weak var smokingSpace: UILabel!
     @IBOutlet weak var openHour: UITextField!
@@ -34,22 +36,19 @@ class AddViewController: UIViewController,CLLocationManagerDelegate, GMSMapViewD
         print(longitude)
         print(latitude)
         
-        //   地図の座標とズームレベルを受け取って地図を描画する
-
-     
         
         
         let camera = GMSCameraPosition.camera(withLatitude: Double(latitude) ?? 0, longitude: Double(longitude) ?? 0, zoom: 10.0)
         
-
+        
         
         mapView = GMSMapView.map(withFrame: CGRect(origin: .zero, size: addMapView.bounds.size), camera: camera)
         
         //        ピンを立てる
-                let marker = GMSMarker()
-                marker.position = CLLocationCoordinate2D(latitude: Double(latitude) ?? 0, longitude:Double(longitude) ?? 0)
-                marker.map = mapView
-                mapView.delegate = self
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: Double(latitude) ?? 0, longitude:Double(longitude) ?? 0)
+        marker.map = mapView
+        mapView.delegate = self
         
         self.addMapView.addSubview(mapView)
         self.addMapView.sendSubviewToBack(mapView)
@@ -80,13 +79,50 @@ class AddViewController: UIViewController,CLLocationManagerDelegate, GMSMapViewD
         mapModel.tel = self.tel.text!
         
         
+        if storeName.text?.count ==  0{
+            alert(message: "店名が未入力です")
+            return
+            
+        }
         
-        //        必須項目のチェック
-        //        OKだったら、保存
-        //        NGだったら、保存せずアラートを出す
+//        if smokingSpace.text ==  "選択されていません"{
+//            alert(message: "カテゴリーが選択されていません")
+//            return
+//            
+//        }
+    
+        
+        Firestore.firestore().collection("map").document().setData([
+            "storeName": mapModel.storeName,
+            "smokingSpace": mapModel.smokingSpace,
+            "openHour": mapModel.openHour,
+            "closeHour": mapModel.closeHour,
+            "tel": mapModel.tel,
+            "zahyo": GeoPoint(latitude:Double(latitude) ?? 0, longitude: Double(longitude) ?? 0)
+            
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        
         
     }
     
+ 
+    
+    func alert (message: String){
+        let dialog = UIAlertController(title: "タイトル", message:message, preferredStyle: .alert)
+        //ボタンのタイトル
+        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        //実際に表示させる
+        self.present(dialog, animated: true, completion: nil)
+    }
     
     
     

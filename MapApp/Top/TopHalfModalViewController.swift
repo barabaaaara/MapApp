@@ -12,9 +12,9 @@ import FloatingPanel
 
 class TopHalfModalViewController: UIViewController{
 
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var decideBotton: UIButton!
-    var fpc = FloatingPanelController()
+    @IBOutlet weak var backButton: UIButton! //戻るボタンとの紐付け
+    @IBOutlet weak var decideBotton: UIButton! //決定ボタンとの紐付け
+    var fpc = FloatingPanelController() //フローティングパネルのフレームワークの定義
     var vc: ViewController = ViewController()
     
     override func viewDidLoad() {
@@ -26,15 +26,15 @@ class TopHalfModalViewController: UIViewController{
         backButton.layer.borderColor = UIColor.systemBlue.cgColor
     }
     
+//    戻るボタンを押したらモーダル遷移で戻る
     @IBAction func backButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+//   決定ボタンを押したら、その地点での緯度と経度をViewControllerからaddViewControllerに渡す
     @IBAction func decideButtonTapped(_ sender: Any) {
-        let contentVC = AddViewController()
+        let contentVC = AddViewController() //addViewContorollerに遷移
         contentVC.longitude = vc.getCenterPoint().longitude.description
         contentVC.latitude = vc.getCenterPoint().latitude.description
-
         let navi = UINavigationController(rootViewController: contentVC)
         navi.modalPresentationStyle = .overCurrentContext
         self.present(navi, animated: true, completion: nil)
