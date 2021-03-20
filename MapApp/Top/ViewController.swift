@@ -31,7 +31,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+        print(self.registerButton)
         let picture = UIImage(named: "plus") //"Plusという画像を使用する"
         self.registerButton.setImage(picture, for:.normal)
         registerButton.layer.cornerRadius = 20.0 //ボタンの角を丸くする（幅の半分ぐらいが良い）
@@ -39,15 +39,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         registerButton.layer.shadowColor = UIColor.black.cgColor
         registerButton.layer.shadowOpacity = 0.3
         registerButton.layer.shadowRadius = 12
-        
+
         pinImage.isHidden = true
-        
+//        let marker = GMSMarker()
+//        marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
+//        marker.title = "Me"
+//        marker.map = mapView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        mapView.delegate = self
         //初期値はApple本社
         let camera = GMSCameraPosition.camera(withLatitude: 37.3318, longitude: -122.0312, zoom: 20.0)
         mapView = GMSMapView.map(withFrame: CGRect(origin: .zero, size: view.bounds.size), camera: camera)
@@ -62,9 +65,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         self.view.addSubview(mapView)
         self.view.sendSubviewToBack(mapView)
-        //        self.view.bringSubviewToFront(mapView)
+                self.view.bringSubviewToFront(mapView)
         print(getCenterPoint())
         
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
+        marker.title = "Me"
+        marker.map = mapView
         
         let docRef = Firestore.firestore().collection("map")
         
@@ -77,15 +84,49 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             guard let document = document else { return }
             for document in document.documents {
                 let map = MapModel()
-                guard case map.coordinate = document.data()["zahyo"] as? GeoPoint else { return  }
-                print(map.coordinate.longitude)
+                let zahyo = CLLocationCoordinate2D.init(latitude: 34.994742, longitude: 135.766125)
+                print("test0")
+                print(document.data()["zahyo"]!)
+//                self.putMarker(title: "テスト", coordinate: zahyo, iconName: "テスト２")
+                //                guard case map.coordinate = document.data()["zahyo"] as? GeoPoint else {
+                //                    print("failzahyo"); return  }
+                
+                
+                
+                print("test")
             }
         }
         
         
     }
     
-//    起動したら現在地を取得し、表示する（アプリ起動時に現在地が表示される）
+//    override func loadView() {
+//        super .loadView()
+//        mapView.delegate = self
+//        let camera = GMSCameraPosition.camera(withLatitude: 37.3318, longitude: -122.0312, zoom: 20.0)
+//        mapView = GMSMapView.map(withFrame: CGRect(origin: .zero, size: view.bounds.size), camera: camera)
+//        mapView.settings.myLocationButton = true //右下のボタン追加する
+//        mapView.isMyLocationEnabled = true
+
+
+//        let marker = GMSMarker()
+//        marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
+//        marker.title = "Me"
+//        marker.map = mapView
+//        mapView.selectedMarker = marker
+//    }
+//
+
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        print("didTapMaker")
+        print(marker)
+        return false
+    }
+    
+
+    
+    //    起動したら現在地を取得し、表示する（アプリ起動時に現在地が表示される）
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation = locations.last
         

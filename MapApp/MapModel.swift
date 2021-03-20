@@ -14,7 +14,7 @@ class MapModel: NSObject{
     var openHour: String = ""
     var closeHour: String = ""
     var tel: String = ""
-    var coordinate: GeoPoint!
+    var coordinate: GeoPoint?
     
     
     
