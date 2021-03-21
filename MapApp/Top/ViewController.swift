@@ -6,7 +6,7 @@ import FloatingPanel
 
 //ViewControllerクラスはUIViewController・・・を継承している
 //GPSの位置情報や電子コンパスの機能を使いたい場合はCLLocationManagerDelegate
-class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class ViewController: UIViewController {
     
     var locationManager = CLLocationManager() //CLLocationManagerを定義
     var fpc = FloatingPanelController() //FlotingPanelを定義
@@ -25,13 +25,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         fpc.isRemovalInteractionEnabled = true //
         pinImage.isHidden = false //タップされたらpinの非表示を解除する
         self.present(fpc, animated: true, completion: nil) //
-        
-        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print(self.registerButton)
         let picture = UIImage(named: "plus") //"Plusという画像を使用する"
         self.registerButton.setImage(picture, for:.normal)
         registerButton.layer.cornerRadius = 20.0 //ボタンの角を丸くする（幅の半分ぐらいが良い）
@@ -41,10 +38,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         registerButton.layer.shadowRadius = 12
 
         pinImage.isHidden = true
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
-//        marker.title = "Me"
-//        marker.map = mapView
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
+        marker.title = "Me"
+        marker.map = mapView
     }
     
     override func viewDidLoad() {
@@ -65,14 +62,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         self.view.addSubview(mapView)
         self.view.sendSubviewToBack(mapView)
-                self.view.bringSubviewToFront(mapView)
-        print(getCenterPoint())
-        
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
-        marker.title = "Me"
-        marker.map = mapView
-        
+
         let docRef = Firestore.firestore().collection("map")
         
         Firestore.firestore().collection("map").getDocuments { (snaps, error) in
@@ -84,61 +74,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             guard let document = document else { return }
             for document in document.documents {
                 let map = MapModel()
-                let zahyo = CLLocationCoordinate2D.init(latitude: 34.994742, longitude: 135.766125)
-                print("test0")
-                print(document.data()["zahyo"]!)
-//                self.putMarker(title: "テスト", coordinate: zahyo, iconName: "テスト２")
-                //                guard case map.coordinate = document.data()["zahyo"] as? GeoPoint else {
-                //                    print("failzahyo"); return  }
-                
-                
-                
-                print("test")
+                map.coordinate = document.data()["zahyo"] as? GeoPoint
+                print(map.coordinate?.latitude)
+                guard case map.coordinate = document.data()["zahyo"] as? GeoPoint else {
+                                    print("failzahyo"); return  }
             }
         }
         
         
     }
-    
-//    override func loadView() {
-//        super .loadView()
-//        mapView.delegate = self
-//        let camera = GMSCameraPosition.camera(withLatitude: 37.3318, longitude: -122.0312, zoom: 20.0)
-//        mapView = GMSMapView.map(withFrame: CGRect(origin: .zero, size: view.bounds.size), camera: camera)
-//        mapView.settings.myLocationButton = true //右下のボタン追加する
-//        mapView.isMyLocationEnabled = true
 
-
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
-//        marker.title = "Me"
-//        marker.map = mapView
-//        mapView.selectedMarker = marker
-//    }
-//
-
-    
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print("didTapMaker")
-        print(marker)
-        return false
-    }
-    
-
-    
-    //    起動したら現在地を取得し、表示する（アプリ起動時に現在地が表示される）
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation = locations.last
-        
-        let camera = GMSCameraPosition.camera(withLatitude: userLocation!.coordinate.latitude,
-                                              longitude: userLocation!.coordinate.longitude, zoom: 17.0)
-        self.mapView.animate(to: camera)
-        
-        locationManager.stopUpdatingLocation()
-    }
-    
-    
-    
     
     func getCenterPoint() -> CLLocationCoordinate2D {
         return mapView.projection.coordinate(for: mapView.center)
@@ -146,6 +91,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     
     
     
+}
+extension ViewController: GMSMapViewDelegate {
+    //Called after a marker has been tapped.
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        return false
+    }
+}
+extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation = locations.last
+        let camera = GMSCameraPosition.camera(withLatitude: userLocation!.coordinate.latitude,
+                                              longitude: userLocation!.coordinate.longitude, zoom: 17.0)
+        self.mapView.animate(to: camera)
+        locationManager.stopUpdatingLocation()
+    }
 }
 
 //フローティングパネルのレイアウト
