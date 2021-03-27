@@ -62,6 +62,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+//        if !UserDefaults.standard.bool(forKey: "agreeBefore"){
+        let vc = UINavigationController(rootViewController: AgreeViewController())
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+            present(vc, animated: true, completion: nil)
+            
+//        }
+    }
+        
+
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let picture = UIImage(named: "plus") //"Plusという画像を使用する"

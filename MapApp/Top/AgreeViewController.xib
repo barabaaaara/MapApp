@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AgreeViewController" customModule="MapApp" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bcl-jT-9SR">
+                    <rect key="frame" x="61" y="300" width="292" height="296"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MNp-4N-lmj">
+                            <rect key="frame" x="39" y="0.0" width="214" height="285"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZP-tY-dlr">
+                                    <rect key="frame" x="0.0" y="0.0" width="214" height="39"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="39" id="vIA-3y-FX8"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="利用規約への同意" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5Y-1C-dou">
+                                    <rect key="frame" x="0.0" y="39" width="214" height="19.5"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VlC-mm-EgJ">
+                                    <rect key="frame" x="0.0" y="58.5" width="214" height="12"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="12" id="z0m-6Y-c0M"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="以下への同意が必要です" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4M-Sf-t39">
+                                    <rect key="frame" x="0.0" y="70.5" width="214" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbA-ia-3jw">
+                                    <rect key="frame" x="0.0" y="85" width="214" height="16"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="16" id="Ezx-0N-jI1"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acI-ug-pac">
+                                    <rect key="frame" x="0.0" y="101" width="214" height="76"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="・私は20歳以上です。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8h-PA-L2Z">
+                                            <rect key="frame" x="16" y="16" width="156" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="・利用規約へ同意します。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aik-M4-2YU">
+                                            <rect key="frame" x="16" y="46" width="171.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                    <constraints>
+                                        <constraint firstItem="aik-M4-2YU" firstAttribute="leading" secondItem="acI-ug-pac" secondAttribute="leading" constant="16" id="4SR-vy-wHW"/>
+                                        <constraint firstAttribute="height" constant="76" id="BiL-Y0-Nuh"/>
+                                        <constraint firstItem="aik-M4-2YU" firstAttribute="top" secondItem="i8h-PA-L2Z" secondAttribute="bottom" constant="12" id="FwI-RP-xsj"/>
+                                        <constraint firstAttribute="width" constant="214" id="eaL-RU-Pye"/>
+                                        <constraint firstItem="i8h-PA-L2Z" firstAttribute="top" secondItem="acI-ug-pac" secondAttribute="top" constant="16" id="rXk-LT-ExD"/>
+                                        <constraint firstItem="i8h-PA-L2Z" firstAttribute="leading" secondItem="acI-ug-pac" secondAttribute="leading" constant="16" id="v5W-9u-QVS"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zMe-9Q-TcN">
+                                    <rect key="frame" x="0.0" y="177" width="214" height="23"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="23" id="fzq-bC-2Bu"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBX-84-iIT">
+                                    <rect key="frame" x="0.0" y="200" width="214" height="40"/>
+                                    <color key="backgroundColor" name="AccentColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="bT5-1q-q3p"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                    <state key="normal" title="同意して進む">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="clipToBounds" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="agreeBottunTapped:" destination="-1" eventType="touchUpInside" id="4pk-sM-198"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIB-8k-zIm">
+                                    <rect key="frame" x="0.0" y="240" width="214" height="16"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="16" id="rBp-WF-qjP"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LV2-br-59U">
+                                    <rect key="frame" x="0.0" y="256" width="214" height="29"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="利用規約"/>
+                                    <connections>
+                                        <action selector="termTapped:" destination="-1" eventType="touchUpInside" id="FDY-Rr-oE3"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="kbA-ia-3jw" firstAttribute="top" secondItem="r4M-Sf-t39" secondAttribute="bottom" id="MZg-KH-Yjn"/>
+                                <constraint firstItem="VlC-mm-EgJ" firstAttribute="top" secondItem="d5Y-1C-dou" secondAttribute="bottom" id="Q7D-OO-GfB"/>
+                                <constraint firstItem="TIB-8k-zIm" firstAttribute="top" secondItem="NBX-84-iIT" secondAttribute="bottom" id="Upq-aN-dP4"/>
+                                <constraint firstItem="zMe-9Q-TcN" firstAttribute="top" secondItem="acI-ug-pac" secondAttribute="bottom" id="Z5M-3P-fDp"/>
+                                <constraint firstItem="TZP-tY-dlr" firstAttribute="top" secondItem="MNp-4N-lmj" secondAttribute="top" id="bf5-j5-7nJ"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="296" id="3YG-jY-pEr"/>
+                        <constraint firstAttribute="width" constant="292" id="84M-bg-dCj"/>
+                        <constraint firstItem="MNp-4N-lmj" firstAttribute="top" secondItem="Bcl-jT-9SR" secondAttribute="top" id="N3M-Es-9m2"/>
+                        <constraint firstAttribute="trailing" secondItem="MNp-4N-lmj" secondAttribute="trailing" constant="39" id="VYj-ky-Lot"/>
+                        <constraint firstItem="MNp-4N-lmj" firstAttribute="leading" secondItem="Bcl-jT-9SR" secondAttribute="leading" constant="39" id="jko-ye-PPi"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <constraints>
+                <constraint firstItem="Bcl-jT-9SR" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="P0z-hR-Pnk"/>
+                <constraint firstItem="Bcl-jT-9SR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="roO-80-4LL"/>
+            </constraints>
+            <point key="canvasLocation" x="-14" y="95"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -24,6 +24,10 @@
 		94A4F6A925E243B500BD0320 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94A4F6A825E243B500BD0320 /* GoogleService-Info.plist */; };
 		94A4F6B525E2455C00BD0320 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A4F6B325E2455C00BD0320 /* ViewController.swift */; };
 		94A4F6B625E2455C00BD0320 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A4F6B425E2455C00BD0320 /* ViewController.xib */; };
+		94B9134A260EECEA00292165 /* AgreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B91348260EECEA00292165 /* AgreeViewController.swift */; };
+		94B9134B260EECEA00292165 /* AgreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B91349260EECEA00292165 /* AgreeViewController.xib */; };
+		94B91351260EFADD00292165 /* TermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B9134F260EFADD00292165 /* TermViewController.swift */; };
+		94B91352260EFADD00292165 /* TermViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B91350260EFADD00292165 /* TermViewController.xib */; };
 		FBB9B67EF7CAE0956167EE38 /* Pods_MapApp_MapAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 590479228AD17CE7FA47A68D /* Pods_MapApp_MapAppUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +78,10 @@
 		94A4F6A825E243B500BD0320 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		94A4F6B325E2455C00BD0320 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		94A4F6B425E2455C00BD0320 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		94B91348260EECEA00292165 /* AgreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeViewController.swift; sourceTree = "<group>"; };
+		94B91349260EECEA00292165 /* AgreeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgreeViewController.xib; sourceTree = "<group>"; };
+		94B9134F260EFADD00292165 /* TermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermViewController.swift; sourceTree = "<group>"; };
+		94B91350260EFADD00292165 /* TermViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermViewController.xib; sourceTree = "<group>"; };
 		BED63AC9D3D50748301DDA32 /* Pods_MapApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,6 +117,10 @@
 			isa = PBXGroup;
 			children = (
 				94A4F6B325E2455C00BD0320 /* ViewController.swift */,
+				94B9134F260EFADD00292165 /* TermViewController.swift */,
+				94B91350260EFADD00292165 /* TermViewController.xib */,
+				94B91348260EECEA00292165 /* AgreeViewController.swift */,
+				94B91349260EECEA00292165 /* AgreeViewController.xib */,
 				94A4F6B425E2455C00BD0320 /* ViewController.xib */,
 				949E414625EA5D6C00A6DD75 /* TopHalfModalViewController.swift */,
 				949E414725EA5D6C00A6DD75 /* TopHalfModalViewController.xib */,
@@ -318,10 +330,12 @@
 				949E90E925F507A0002461EE /* AddViewController.xib in Resources */,
 				940E944725F7573F00632393 /* SelectPlaceViewController.xib in Resources */,
 				94A4F65A25E23E2A00BD0320 /* LaunchScreen.storyboard in Resources */,
+				94B9134B260EECEA00292165 /* AgreeViewController.xib in Resources */,
 				949E414925EA5D6C00A6DD75 /* TopHalfModalViewController.xib in Resources */,
 				94A4F65725E23E2A00BD0320 /* Assets.xcassets in Resources */,
 				94A4F6B625E2455C00BD0320 /* ViewController.xib in Resources */,
 				94A4F6A925E243B500BD0320 /* GoogleService-Info.plist in Resources */,
+				94B91352260EFADD00292165 /* TermViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +498,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				949E414825EA5D6C00A6DD75 /* TopHalfModalViewController.swift in Sources */,
+				94B9134A260EECEA00292165 /* AgreeViewController.swift in Sources */,
+				94B91351260EFADD00292165 /* TermViewController.swift in Sources */,
 				940E944625F7573F00632393 /* SelectPlaceViewController.swift in Sources */,
 				94A4F6B525E2455C00BD0320 /* ViewController.swift in Sources */,
 				949E90E825F507A0002461EE /* AddViewController.swift in Sources */,
