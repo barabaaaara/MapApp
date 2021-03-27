@@ -17,36 +17,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     @IBOutlet weak var pinImage: UIImageView!
     @IBOutlet weak var registerButton: UIButton!
     
-    @IBAction func registerButtonTapped(_ sender: Any) {
-        let contentVC = TopHalfModalViewController() //TopHalfModalViewControllerへ遷移
-        contentVC.vc = self //これは何？
-        fpc.set(contentViewController: contentVC) //fpcをセットする？（contentViewControllerはcontentVCを使用する）
-        fpc.layout = MyFloatingPanelLayout() //fpcのレイアウトはMyFloatingPanelLayoutを使う
-        fpc.isRemovalInteractionEnabled = true //
-        pinImage.isHidden = false //タップされたらpinの非表示を解除する
-        self.present(fpc, animated: true, completion: nil) //
-        
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print(self.registerButton)
-        let picture = UIImage(named: "plus") //"Plusという画像を使用する"
-        self.registerButton.setImage(picture, for:.normal)
-        registerButton.layer.cornerRadius = 20.0 //ボタンの角を丸くする（幅の半分ぐらいが良い）
-        registerButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
-        registerButton.layer.shadowColor = UIColor.black.cgColor
-        registerButton.layer.shadowOpacity = 0.3
-        registerButton.layer.shadowRadius = 12
-
-        pinImage.isHidden = true
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
-//        marker.title = "Me"
-//        marker.map = mapView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,8 +35,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         self.view.addSubview(mapView)
         self.view.sendSubviewToBack(mapView)
-                self.view.bringSubviewToFront(mapView)
-        print(getCenterPoint())
         
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
@@ -85,46 +53,42 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             for document in document.documents {
                 let map = MapModel()
                 let zahyo = CLLocationCoordinate2D.init(latitude: 34.994742, longitude: 135.766125)
-                print("test0")
-                print(document.data()["zahyo"]!)
-//                self.putMarker(title: "テスト", coordinate: zahyo, iconName: "テスト２")
+                //                self.putMarker(title: "テスト", coordinate: zahyo, iconName: "テスト２")
                 //                guard case map.coordinate = document.data()["zahyo"] as? GeoPoint else {
                 //                    print("failzahyo"); return  }
                 
                 
-                
-                print("test")
             }
         }
-        
-        
     }
     
-//    override func loadView() {
-//        super .loadView()
-//        mapView.delegate = self
-//        let camera = GMSCameraPosition.camera(withLatitude: 37.3318, longitude: -122.0312, zoom: 20.0)
-//        mapView = GMSMapView.map(withFrame: CGRect(origin: .zero, size: view.bounds.size), camera: camera)
-//        mapView.settings.myLocationButton = true //右下のボタン追加する
-//        mapView.isMyLocationEnabled = true
-
-
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
-//        marker.title = "Me"
-//        marker.map = mapView
-//        mapView.selectedMarker = marker
-//    }
-//
-
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let picture = UIImage(named: "plus") //"Plusという画像を使用する"
+        self.registerButton.setImage(picture, for:.normal)
+        registerButton.layer.cornerRadius = 20.0 //ボタンの角を丸くする（幅の半分ぐらいが良い）
+        registerButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+        registerButton.layer.shadowColor = UIColor.black.cgColor
+        registerButton.layer.shadowOpacity = 0.3
+        registerButton.layer.shadowRadius = 12
+        
+        pinImage.isHidden = true
+    }
+    
+    @IBAction func registerButtonTapped(_ sender: Any) {
+        let contentVC = TopHalfModalViewController() //TopHalfModalViewControllerへ遷移
+        contentVC.vc = self //これは何？
+        fpc.set(contentViewController: contentVC) //fpcをセットする？（contentViewControllerはcontentVCを使用する）
+        fpc.layout = MyFloatingPanelLayout() //fpcのレイアウトはMyFloatingPanelLayoutを使う
+        fpc.isRemovalInteractionEnabled = true //
+        pinImage.isHidden = false //タップされたらpinの非表示を解除する
+        self.present(fpc, animated: true, completion: nil) //
+    }
+    
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print("didTapMaker")
-        print(marker)
         return false
     }
-    
-
     
     //    起動したら現在地を取得し、表示する（アプリ起動時に現在地が表示される）
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -136,16 +100,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         locationManager.stopUpdatingLocation()
     }
-    
-    
-    
-    
+
     func getCenterPoint() -> CLLocationCoordinate2D {
         return mapView.projection.coordinate(for: mapView.center)
     }
-    
-    
-    
 }
 
 //フローティングパネルのレイアウト
