@@ -33,46 +33,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
+        getSpots()
+        
         self.view.addSubview(mapView)
         self.view.sendSubviewToBack(mapView)
-        
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2DMake(34.994742, 135.766125)
-        marker.title = "Me"
-        marker.map = mapView
-        
-        let docRef = Firestore.firestore().collection("map")
-        
-        Firestore.firestore().collection("map").getDocuments { (snaps, error) in
-        }
-        docRef.getDocuments{ (document, error) in
-            if let error = error{
-                print(error)
-            }
-            guard let document = document else { return }
-            for document in document.documents {
-                let map = MapModel()
-                let zahyo = CLLocationCoordinate2D.init(latitude: 34.994742, longitude: 135.766125)
-                //                self.putMarker(title: "テスト", coordinate: zahyo, iconName: "テスト２")
-                //                guard case map.coordinate = document.data()["zahyo"] as? GeoPoint else {
-                //                    print("failzahyo"); return  }
-                
-                
-            }
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        if !UserDefaults.standard.bool(forKey: "agreeBefore"){
-        let vc = UINavigationController(rootViewController: AgreeViewController())
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .overCurrentContext
+        if !UserDefaults.standard.bool(forKey: "agreeBefore"){
+            let vc = UINavigationController(rootViewController: AgreeViewController())
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .overCurrentContext
             present(vc, animated: true, completion: nil)
             
-//        }
+        }
     }
+    
+    override func loadView() {
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2DMake(34.99474177171109, 135.76612539589405)
+        marker.map = self.mapView
         
-
+    }
+    
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -97,9 +81,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         self.present(fpc, animated: true, completion: nil) //フローティングパネルで表示する
     }
     
+    func getSpots(){
+        Firestore.firestore().collection("map")
+            
+            .addSnapshotListener { querySnapshot, error in //変更があったらリアルタイムで更新する
+                guard let snapshot = querySnapshot else { // querySnapshotがあったらsnapshotに代入する
+                    print("Error fetching document: \(error!)")//なかったらエラー文出して処理を打ち切る
+                    return
+                }
+                var spotModels: [MapModel] = []//MapModelが複数ある配列をspotModelsとして定義
+                snapshot.documents.forEach{document in //受け取った全てのdocumetsに対してforEach構文を使う。そのうちの一つをdocumentとして定義する
+                    let map = MapModel() //MapModelをインスタンス化。使える状態にする。たい焼きみたいなやつ（あくまでも型を作っている状態で下記に実際にデータをいれる）
+                    map.storeName = document.data()["storeName"] as? String ?? ""
+                    map.smokingSpace = document.data()["smokingSpace"] as? String ?? ""
+                    map.openHour = document.data()["openHour"] as? String ?? ""
+                    map.closeHour = document.data()["closeHour"] as? String ?? ""
+                    map.tel = document.data()["tel"] as? String ?? ""
+                    map.coordinate = document.data()["zahyo"] as! GeoPoint
+                    spotModels.append(map)
+                    let marker = GMSMarker()
+                    marker.position = CLLocationCoordinate2DMake(map.coordinate?.latitude as? Double ?? 0, map.coordinate?.longitude as? Double ?? 0)
+                    marker.map = self.mapView
+                }
+                print(spotModels[0].storeName)
+            }
+        
+        
+    }
+    
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        print("tap")
         return false
+    }
+    
+    //マップを移動して止まった時に呼び出されるデリゲートメソッド
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        print("idle")
+        self.getSpots()
     }
     
     //    起動したら現在地を取得し、表示する（アプリ起動時に現在地が表示される）
@@ -112,7 +131,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         locationManager.stopUpdatingLocation()
     }
-
+    
     func getCenterPoint() -> CLLocationCoordinate2D {
         return mapView.projection.coordinate(for: mapView.center)
     }
