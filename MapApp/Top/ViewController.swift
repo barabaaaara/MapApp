@@ -94,7 +94,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         fpc.layout = MyFloatingPanelLayout() //fpcのレイアウトはMyFloatingPanelLayoutを使う
         fpc.isRemovalInteractionEnabled = true //
         pinImage.isHidden = false //タップされたらpinの非表示を解除する
-        self.present(fpc, animated: true, completion: nil) //
+        self.present(fpc, animated: true, completion: nil) //フローティングパネルで表示する
     }
     
     

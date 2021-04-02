@@ -9,6 +9,7 @@ import UIKit
 
 class AgreeViewController: UIViewController {
     
+    //同意ボタンをタップするとユーザーデフォルトを使用する
     @IBAction func agreeBottunTapped(_ sender: Any) {
         UserDefaults.standard.setValue(true, forKey: "agreeBefore")
         dismiss(animated: true, completion: nil)
