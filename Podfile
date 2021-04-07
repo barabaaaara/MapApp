@@ -8,6 +8,7 @@ target 'MapApp' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'FloatingPanel'
+  pod 'Google-Maps-iOS-Utils'
 
   # Pods for MapApp
 

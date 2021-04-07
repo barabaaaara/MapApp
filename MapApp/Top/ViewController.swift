@@ -3,6 +3,7 @@ import Firebase
 import GoogleMaps
 import GooglePlaces
 import FloatingPanel
+import GoogleMapsUtils
 
 //ViewControllerクラスはUIViewController・・・を継承している
 //GPSの位置情報や電子コンパスの機能を使いたい場合はCLLocationManagerDelegate
@@ -16,6 +17,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     var zoomLevel: String?
     @IBOutlet weak var pinImage: UIImageView!
     @IBOutlet weak var registerButton: UIButton!
+    private var clusterManager: GMUClusterManager!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +28,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         let camera = GMSCameraPosition.camera(withLatitude: 37.3318, longitude: -122.0312, zoom: 20.0)
         mapView = GMSMapView.map(withFrame: CGRect(origin: .zero, size: view.bounds.size), camera: camera)
         mapView.settings.myLocationButton = true //右下のボタン追加する
+        self.mapView.padding = UIEdgeInsets (top: 0, left: 0, bottom: 50, right: 30) //ボタンの位置は調整できないが内面の幅（padding）で調整ができる。
         mapView.isMyLocationEnabled = true
+        
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView,
+                                                 clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm,
+                                           renderer: renderer)
+        
+        // Register self to listen to GMSMapViewDelegate events.
+        clusterManager.setMapDelegate(self)
         
         // User Location
         locationManager.delegate = self
@@ -33,7 +47,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
-        getSpots()
+        //getSpots()
+        
+        let position1 = CLLocationCoordinate2D(latitude: 35.698683, longitude: 139.77421900000002)
+        let marker1 = GMSMarker(position: position1)
+        
+        let position2 = CLLocationCoordinate2D(latitude: 35.692683, longitude: 139.77425900000002)
+        let marker2 = GMSMarker(position: position2)
+        
+        let position3 = CLLocationCoordinate2D(latitude: 35.708683, longitude: 139.77461900000002)
+        let marker3 = GMSMarker(position: position3)
+        
+        let position4 = CLLocationCoordinate2D(latitude: 35.693, longitude: 139.77501900000002)
+        let marker4 = GMSMarker(position: position4)
+        
+        let markerArray = [marker1, marker2, marker3, marker4]
+        clusterManager.add(markerArray)
+        clusterManager.cluster()
         
         self.view.addSubview(mapView)
         self.view.sendSubviewToBack(mapView)
@@ -49,12 +79,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         }
     }
     
-    override func loadView() {
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2DMake(34.99474177171109, 135.76612539589405)
-        marker.map = self.mapView
-        
-    }
+    //    override func loadView() {
+    //        let marker = GMSMarker()
+    //        marker.position = CLLocationCoordinate2DMake(34.99474177171109, 135.76612539589405)
+    //        marker.map = self.mapView
+    //
+    //    }
     
     
     
@@ -109,11 +139,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
     }
     
-    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print("tap")
+        //  タップしたマーカーかクラスターの位置までマップの中心に移動させる
+        mapView.animate(toLocation: marker.position)
+        // check if a cluster icon was tapped　タップしたのがクラスターだったら
+        if marker.userData is GMUCluster {
+            // zoom in on tapped cluster　カメラをズームさせる
+            mapView.animate(toZoom: mapView.camera.zoom + 5)
+            print("Did tap cluster")
+            return true
+        }
+        let contentVC = DetailModalViewController() //TopHalfModalViewControllerへ遷移
+        contentVC.vc = self //これは何？
+        fpc.set(contentViewController: contentVC) //fpcをセットする？（contentViewControllerはcontentVCを使用する）
+        fpc.layout = MyFloatingPanelLayout() //fpcのレイアウトはMyFloatingPanelLayoutを使う
+        fpc.isRemovalInteractionEnabled = true //
+        pinImage.isHidden = false //タップされたらpinの非表示を解除する
+        self.present(fpc, animated: true, completion: nil) //フローティングパネルで表示する
+        print("Did tap a normal marker")
         return false
     }
+    
+    //    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+    //        print("tap")
+    //        return false
+    //    }
     
     //マップを移動して止まった時に呼び出されるデリゲートメソッド
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {

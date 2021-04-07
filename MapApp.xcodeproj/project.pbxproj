@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1C7CCC000A7CCD32E76015C1 /* Pods_MapApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED63AC9D3D50748301DDA32 /* Pods_MapApp.framework */; };
+		4D319C14261DCB0D0079D287 /* DetailModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D319C12261DCB0C0079D287 /* DetailModalViewController.swift */; };
+		4D319C15261DCB0D0079D287 /* DetailModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D319C13261DCB0C0079D287 /* DetailModalViewController.xib */; };
 		729D72B27657ACFE45A5011C /* Pods_MapAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB0E38358FB24E9A17D8044 /* Pods_MapAppTests.framework */; };
 		940E944625F7573F00632393 /* SelectPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940E944425F7573F00632393 /* SelectPlaceViewController.swift */; };
 		940E944725F7573F00632393 /* SelectPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940E944525F7573F00632393 /* SelectPlaceViewController.xib */; };
@@ -54,6 +56,8 @@
 		1AA204DF033FE482035D2B15 /* Pods-MapAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapAppTests.release.xcconfig"; path = "Target Support Files/Pods-MapAppTests/Pods-MapAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		1EE1D26CAA91D3358AC90B8B /* Pods-MapApp-MapAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapApp-MapAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-MapApp-MapAppUITests/Pods-MapApp-MapAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		38AA23DE2FB2A3F00B740734 /* Pods-MapApp-MapAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapApp-MapAppUITests.release.xcconfig"; path = "Target Support Files/Pods-MapApp-MapAppUITests/Pods-MapApp-MapAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4D319C12261DCB0C0079D287 /* DetailModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModalViewController.swift; sourceTree = "<group>"; };
+		4D319C13261DCB0C0079D287 /* DetailModalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailModalViewController.xib; sourceTree = "<group>"; };
 		590479228AD17CE7FA47A68D /* Pods_MapApp_MapAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapApp_MapAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAEBEFEBCA764DD097CE1E6 /* Pods-MapAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapAppTests.debug.xcconfig"; path = "Target Support Files/Pods-MapAppTests/Pods-MapAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		694F71D003EFEB0D1E7A8A92 /* Pods-MapApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapApp.debug.xcconfig"; path = "Target Support Files/Pods-MapApp/Pods-MapApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				94A4F6B325E2455C00BD0320 /* ViewController.swift */,
+				4D319C12261DCB0C0079D287 /* DetailModalViewController.swift */,
+				4D319C13261DCB0C0079D287 /* DetailModalViewController.xib */,
 				94B9134F260EFADD00292165 /* TermViewController.swift */,
 				94B91350260EFADD00292165 /* TermViewController.xib */,
 				94B91348260EECEA00292165 /* AgreeViewController.swift */,
@@ -330,6 +336,7 @@
 				949E90E925F507A0002461EE /* AddViewController.xib in Resources */,
 				940E944725F7573F00632393 /* SelectPlaceViewController.xib in Resources */,
 				94A4F65A25E23E2A00BD0320 /* LaunchScreen.storyboard in Resources */,
+				4D319C15261DCB0D0079D287 /* DetailModalViewController.xib in Resources */,
 				94B9134B260EECEA00292165 /* AgreeViewController.xib in Resources */,
 				949E414925EA5D6C00A6DD75 /* TopHalfModalViewController.xib in Resources */,
 				94A4F65725E23E2A00BD0320 /* Assets.xcassets in Resources */,
@@ -498,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				949E414825EA5D6C00A6DD75 /* TopHalfModalViewController.swift in Sources */,
+				4D319C14261DCB0D0079D287 /* DetailModalViewController.swift in Sources */,
 				94B9134A260EECEA00292165 /* AgreeViewController.swift in Sources */,
 				94B91351260EFADD00292165 /* TermViewController.swift in Sources */,
 				940E944625F7573F00632393 /* SelectPlaceViewController.swift in Sources */,

@@ -245,6 +245,25 @@ PODS:
     - leveldb-library (~> 1.22)
     - nanopb (~> 2.30907.0)
   - FloatingPanel (2.2.0)
+  - Google-Maps-iOS-Utils (3.9.0):
+    - Google-Maps-iOS-Utils/Clustering (= 3.9.0)
+    - Google-Maps-iOS-Utils/Geometry (= 3.9.0)
+    - Google-Maps-iOS-Utils/GeometryUtils (= 3.9.0)
+    - Google-Maps-iOS-Utils/Heatmap (= 3.9.0)
+    - Google-Maps-iOS-Utils/QuadTree (= 3.9.0)
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Clustering (3.9.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Geometry (3.9.0):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/GeometryUtils (3.9.0):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Heatmap (3.9.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/QuadTree (3.9.0):
+    - GoogleMaps
   - GoogleDataTransport (8.2.0):
     - nanopb (~> 2.30907.0)
   - GoogleMaps (4.1.0):
@@ -293,6 +312,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Firestore
   - FloatingPanel
+  - Google-Maps-iOS-Utils
   - GoogleMaps
   - GooglePlaces
 
@@ -305,6 +325,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
     - FloatingPanel
+    - Google-Maps-iOS-Utils
     - GoogleDataTransport
     - GoogleMaps
     - GooglePlaces
@@ -323,6 +344,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: ee1184d51da3293335b83355aad20f537acc24cf
   FirebaseFirestore: b860346d5095c741528efac94995bab39275d0bf
   FloatingPanel: 54b478292da5340317ce78afcaca88fab6f3b57e
+  Google-Maps-iOS-Utils: ae3b4e74b2d734454be32cf62ba8d6ad7283e0c1
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleMaps: 008e2c80e38605b56b560e8deb73d4194ff30bef
   GooglePlaces: a058b776259c13e1323c9ff135549cb1b13ad8e7
@@ -333,6 +355,6 @@ SPEC CHECKSUMS:
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: c029ba1e2f4d0222531cd3ecbe2fdd91153a542d
+PODFILE CHECKSUM: cf6478f2b8bb01162f6b3c02c50e17403319940f
 
 COCOAPODS: 1.10.1
