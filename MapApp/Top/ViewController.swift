@@ -15,6 +15,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     var latitude: String? //緯度は”String型だと定義している”
     var longitude: String? //経度は”String型だと定義している”
     var zoomLevel: String?
+    var spotModels: [MapModel] = []//MapModelが複数ある配列をspotModelsとして定義
     @IBOutlet weak var pinImage: UIImageView!
     @IBOutlet weak var registerButton: UIButton!
     private var clusterManager: GMUClusterManager!
@@ -47,23 +48,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
-        //getSpots()
+        getSpots()
         
-        let position1 = CLLocationCoordinate2D(latitude: 35.698683, longitude: 139.77421900000002)
-        let marker1 = GMSMarker(position: position1)
         
-        let position2 = CLLocationCoordinate2D(latitude: 35.692683, longitude: 139.77425900000002)
-        let marker2 = GMSMarker(position: position2)
-        
-        let position3 = CLLocationCoordinate2D(latitude: 35.708683, longitude: 139.77461900000002)
-        let marker3 = GMSMarker(position: position3)
-        
-        let position4 = CLLocationCoordinate2D(latitude: 35.693, longitude: 139.77501900000002)
-        let marker4 = GMSMarker(position: position4)
-        
-        let markerArray = [marker1, marker2, marker3, marker4]
-        clusterManager.add(markerArray)
-        clusterManager.cluster()
         
         self.view.addSubview(mapView)
         self.view.sendSubviewToBack(mapView)
@@ -78,15 +65,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             
         }
     }
-    
-    //    override func loadView() {
-    //        let marker = GMSMarker()
-    //        marker.position = CLLocationCoordinate2DMake(34.99474177171109, 135.76612539589405)
-    //        marker.map = self.mapView
-    //
-    //    }
-    
-    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -119,7 +97,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
                     print("Error fetching document: \(error!)")//なかったらエラー文出して処理を打ち切る
                     return
                 }
-                var spotModels: [MapModel] = []//MapModelが複数ある配列をspotModelsとして定義
                 snapshot.documents.forEach{document in //受け取った全てのdocumetsに対してforEach構文を使う。そのうちの一つをdocumentとして定義する
                     let map = MapModel() //MapModelをインスタンス化。使える状態にする。たい焼きみたいなやつ（あくまでも型を作っている状態で下記に実際にデータをいれる）
                     map.storeName = document.data()["storeName"] as? String ?? ""
@@ -127,17 +104,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
                     map.openHour = document.data()["openHour"] as? String ?? ""
                     map.closeHour = document.data()["closeHour"] as? String ?? ""
                     map.tel = document.data()["tel"] as? String ?? ""
-                    map.coordinate = document.data()["zahyo"] as! GeoPoint
-                    spotModels.append(map)
-                    let marker = GMSMarker()
-                    marker.position = CLLocationCoordinate2DMake(map.coordinate?.latitude as? Double ?? 0, map.coordinate?.longitude as? Double ?? 0)
-                    marker.map = self.mapView
+                    map.coordinate = document.data()["zahyo"] as? GeoPoint
+                    self.spotModels.append(map)
                 }
-                print(spotModels[0].storeName)
+                print(self.spotModels)
+                self.generateCluster(MapModels:self.spotModels)
             }
-        
-        
     }
+    
+    func generateCluster(MapModels:[MapModel]){
+        print(MapModels.count)
+//        print(MapModels[0].storeName)
+        MapModels.forEach { (Mapmodel) in
+            let item = POIItem(position: CLLocationCoordinate2DMake(Mapmodel.coordinate?.latitude ?? 0, Mapmodel.coordinate?.longitude ?? 0), storeName: Mapmodel.storeName, smokingSpace: Mapmodel.smokingSpace, openHour: Mapmodel.openHour, closeHour: Mapmodel.closeHour, tel: Mapmodel.tel)
+            clusterManager.add(item)
+            print(item.position)
+        }
+        clusterManager.cluster()
+    }
+    
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         //  タップしたマーカーかクラスターの位置までマップの中心に移動させる
@@ -146,29 +131,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         if marker.userData is GMUCluster {
             // zoom in on tapped cluster　カメラをズームさせる
             mapView.animate(toZoom: mapView.camera.zoom + 5)
-            print("Did tap cluster")
             return true
         }
+        self.pinImage.isHidden = true
         let contentVC = DetailModalViewController() //TopHalfModalViewControllerへ遷移
         contentVC.vc = self //これは何？
         fpc.set(contentViewController: contentVC) //fpcをセットする？（contentViewControllerはcontentVCを使用する）
-        fpc.layout = MyFloatingPanelLayout() //fpcのレイアウトはMyFloatingPanelLayoutを使う
+        fpc.layout = DetailFloatingPanelLayout() //fpcのレイアウトはMyFloatingPanelLayoutを使う
         fpc.isRemovalInteractionEnabled = true //
-        pinImage.isHidden = false //タップされたらpinの非表示を解除する
+        self.dismiss(animated: true, completion: nil)
         self.present(fpc, animated: true, completion: nil) //フローティングパネルで表示する
-        print("Did tap a normal marker")
         return false
     }
-    
-    //    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-    //        print("tap")
-    //        return false
-    //    }
-    
+        
     //マップを移動して止まった時に呼び出されるデリゲートメソッド
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         print("idle")
-        self.getSpots()
     }
     
     //    起動したら現在地を取得し、表示する（アプリ起動時に現在地が表示される）
@@ -193,6 +171,15 @@ class MyFloatingPanelLayout: FloatingPanelLayout {
     let initialState: FloatingPanelState = .tip
     var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
         return [.tip: FloatingPanelLayoutAnchor(absoluteInset: 90.0, edge: .bottom, referenceGuide: .safeArea),
+        ]
+    }
+}
+
+class DetailFloatingPanelLayout: FloatingPanelLayout {
+    let position: FloatingPanelPosition = .bottom
+    let initialState: FloatingPanelState = .tip
+    var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+        return [.tip: FloatingPanelLayoutAnchor(absoluteInset: 180.0, edge: .bottom, referenceGuide: .safeArea),
         ]
     }
 }

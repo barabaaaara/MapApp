@@ -14,6 +14,7 @@
 		940E944625F7573F00632393 /* SelectPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940E944425F7573F00632393 /* SelectPlaceViewController.swift */; };
 		940E944725F7573F00632393 /* SelectPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940E944525F7573F00632393 /* SelectPlaceViewController.xib */; };
 		940E944C25F795BF00632393 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940E944B25F795BF00632393 /* MapModel.swift */; };
+		947838892621709C00AE513A /* PoiItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947838882621709C00AE513A /* PoiItem.swift */; };
 		949E414825EA5D6C00A6DD75 /* TopHalfModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949E414625EA5D6C00A6DD75 /* TopHalfModalViewController.swift */; };
 		949E414925EA5D6C00A6DD75 /* TopHalfModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E414725EA5D6C00A6DD75 /* TopHalfModalViewController.xib */; };
 		949E90E825F507A0002461EE /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949E90E625F507A0002461EE /* AddViewController.swift */; };
@@ -64,6 +65,7 @@
 		940E944425F7573F00632393 /* SelectPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPlaceViewController.swift; sourceTree = "<group>"; };
 		940E944525F7573F00632393 /* SelectPlaceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPlaceViewController.xib; sourceTree = "<group>"; };
 		940E944B25F795BF00632393 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
+		947838882621709C00AE513A /* PoiItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiItem.swift; sourceTree = "<group>"; };
 		949E414625EA5D6C00A6DD75 /* TopHalfModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHalfModalViewController.swift; sourceTree = "<group>"; };
 		949E414725EA5D6C00A6DD75 /* TopHalfModalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopHalfModalViewController.xib; sourceTree = "<group>"; };
 		949E90E625F507A0002461EE /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				94A4F6B325E2455C00BD0320 /* ViewController.swift */,
+				947838882621709C00AE513A /* PoiItem.swift */,
 				4D319C12261DCB0C0079D287 /* DetailModalViewController.swift */,
 				4D319C13261DCB0C0079D287 /* DetailModalViewController.xib */,
 				94B9134F260EFADD00292165 /* TermViewController.swift */,
@@ -513,6 +516,7 @@
 				949E90E825F507A0002461EE /* AddViewController.swift in Sources */,
 				940E944C25F795BF00632393 /* MapModel.swift in Sources */,
 				94A4F64E25E23E2800BD0320 /* AppDelegate.swift in Sources */,
+				947838892621709C00AE513A /* PoiItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

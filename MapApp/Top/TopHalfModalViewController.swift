@@ -28,6 +28,7 @@ class TopHalfModalViewController: UIViewController{
     
 //    戻るボタンを押したらモーダル遷移で戻る
     @IBAction func backButtonTapped(_ sender: Any) {
+        self.vc.pinImage.isHidden = true
         self.dismiss(animated: true, completion: nil)
     }
 //   決定ボタンを押したら、その地点での緯度と経度をViewControllerからaddViewControllerに渡す

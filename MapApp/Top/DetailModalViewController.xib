@@ -11,6 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailModalViewController" customModule="MapApp" customModuleProvider="target">
             <connections>
+                <outlet property="adress" destination="Wvq-6C-JRM" id="VRe-0j-oLL"/>
+                <outlet property="businessHour" destination="eXF-Vo-jxx" id="ss8-zL-xnR"/>
+                <outlet property="editButton" destination="1ys-Rb-nyV" id="M6b-1f-cVH"/>
+                <outlet property="kokoku" destination="zZm-2z-Dk8" id="FBm-N8-ZBM"/>
+                <outlet property="storeName" destination="OLq-a3-XEV" id="57G-2R-apL"/>
+                <outlet property="tel" destination="uD7-x0-Jl3" id="4vJ-4v-0Se"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,10 +40,15 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYT-bW-Orx">
+                                    <rect key="frame" x="259" y="0.0" width="47" height="32"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ys-Rb-nyV">
-                                    <rect key="frame" x="259" y="0.0" width="107" height="32"/>
+                                    <rect key="frame" x="306" y="0.0" width="60" height="32"/>
                                     <color key="backgroundColor" name="AccentColor"/>
                                     <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="ARx-yG-RuA"/>
                                         <constraint firstAttribute="height" constant="32" id="tyj-VH-MRB"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

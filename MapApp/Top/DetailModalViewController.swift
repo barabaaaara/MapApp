@@ -9,13 +9,19 @@ import UIKit
 import FloatingPanel
 
 class DetailModalViewController: UIViewController {
+    @IBOutlet weak var adress: UILabel!
+    @IBOutlet weak var storeName: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var businessHour: UILabel!
+    @IBOutlet weak var tel: UILabel!
+    @IBOutlet weak var kokoku: UIView!
     
     var fpc = FloatingPanelController() //フローティングパネルのフレームワークの定義
     var vc: ViewController = ViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        editButton.layer.cornerRadius = 16.0
         // Do any additional setup after loading the view.
     }
 
