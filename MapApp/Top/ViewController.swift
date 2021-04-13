@@ -7,11 +7,11 @@ import GoogleMapsUtils
 
 //ViewControllerクラスはUIViewController・・・を継承している
 //GPSの位置情報や電子コンパスの機能を使いたい場合はCLLocationManagerDelegate
-class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class ViewController: UIViewController {
     
     var locationManager = CLLocationManager() //CLLocationManagerを定義
     var fpc = FloatingPanelController() //FlotingPanelを定義
-    lazy var mapView = GMSMapView() //lazyって何？？　インポートしたGooglemapsを定義してる
+    var mapView = GMSMapView() //lazyって何？？　インポートしたGooglemapsを定義してる
     var latitude: String? //緯度は”String型だと定義している”
     var longitude: String? //経度は”String型だと定義している”
     var zoomLevel: String?
@@ -49,9 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         locationManager.startUpdatingLocation()
         
         getSpots()
-        
-        
-        
+
         self.view.addSubview(mapView)
         self.view.sendSubviewToBack(mapView)
     }
@@ -121,7 +119,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         clusterManager.cluster()
     }
     
-    
+
+    func getCenterPoint() -> CLLocationCoordinate2D {
+        return mapView.projection.coordinate(for: mapView.center)
+    }
+}
+extension ViewController: GMSMapViewDelegate {}
+extension ViewController: CLLocationManagerDelegate {
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        print("idle")
+    }
+
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         //  タップしたマーカーかクラスターの位置までマップの中心に移動させる
         mapView.animate(toLocation: marker.position)
@@ -141,25 +149,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         self.present(fpc, animated: true, completion: nil) //フローティングパネルで表示する
         return false
     }
-        
-    //マップを移動して止まった時に呼び出されるデリゲートメソッド
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        print("idle")
-    }
-    
-    //    起動したら現在地を取得し、表示する（アプリ起動時に現在地が表示される）
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation = locations.last
-        
         let camera = GMSCameraPosition.camera(withLatitude: userLocation!.coordinate.latitude,
                                               longitude: userLocation!.coordinate.longitude, zoom: 17.0)
         self.mapView.animate(to: camera)
-        
         locationManager.stopUpdatingLocation()
-    }
-    
-    func getCenterPoint() -> CLLocationCoordinate2D {
-        return mapView.projection.coordinate(for: mapView.center)
     }
 }
 
@@ -177,7 +173,7 @@ class DetailFloatingPanelLayout: FloatingPanelLayout {
     let position: FloatingPanelPosition = .bottom
     let initialState: FloatingPanelState = .tip
     var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
-        return [.tip: FloatingPanelLayoutAnchor(absoluteInset: 180.0, edge: .bottom, referenceGuide: .safeArea),
+        return [.tip: FloatingPanelLayoutAnchor(fractionalInset: 0.3, edge: .bottom, referenceGuide: .safeArea),
         ]
     }
 }
