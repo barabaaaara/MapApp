@@ -23,7 +23,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        registerButton.titleLabel?.adjustsFontSizeToFitWidth = true
         mapView.delegate = self
         //初期値はApple本社
         let camera = GMSCameraPosition.camera(withLatitude: 37.3318, longitude: -122.0312, zoom: 20.0)
