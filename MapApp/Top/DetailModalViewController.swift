@@ -7,6 +7,7 @@
 
 import UIKit
 import FloatingPanel
+import GoogleMapsUtils
 
 class DetailModalViewController: UIViewController {
     @IBOutlet weak var adress: UILabel!
@@ -16,6 +17,9 @@ class DetailModalViewController: UIViewController {
     @IBOutlet weak var tel: UILabel!
     @IBOutlet weak var kokoku: UIView!
     
+    var POItem : POIItem = POIItem(position:CLLocationCoordinate2DMake(0,0), storeName: "", smokingSpace: "", openHour: "", closeHour: "", tel:"")
+    
+    
     var fpc = FloatingPanelController() //フローティングパネルのフレームワークの定義
     var vc: ViewController = ViewController()
 
@@ -23,6 +27,10 @@ class DetailModalViewController: UIViewController {
         super.viewDidLoad()
         editButton.layer.cornerRadius = 16.0
         // Do any additional setup after loading the view.
+        self .storeName.text = POItem.storeName
+        self.tel.text = POItem.tel
+        self.businessHour.text = POItem.openHour + "~" + POItem.closeHour
+        print(POItem)
     }
 
 

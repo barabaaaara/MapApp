@@ -29,7 +29,9 @@ class ViewController: UIViewController {
         let camera = GMSCameraPosition.camera(withLatitude: 37.3318, longitude: -122.0312, zoom: 20.0)
         mapView = GMSMapView.map(withFrame: CGRect(origin: .zero, size: view.bounds.size), camera: camera)
         mapView.settings.myLocationButton = true //右下のボタン追加する
-        self.mapView.padding = UIEdgeInsets (top: 0, left: 0, bottom: 50, right: 30) //ボタンの位置は調整できないが内面の幅（padding）で調整ができる。
+        self.mapView.padding = UIEdgeInsets (top: 0, left: 0, bottom: 20, right: 15)
+        //        let botPadding = self.view.frame.size.height - self.bookButton.frame.origin.y
+        //        self.mapView.padding = UIEdgeInsetsMake(0, 0, botPadding,0)//ボタンの位置は調整できないが内面の幅（padding）で調整ができる。
         mapView.isMyLocationEnabled = true
         
         let iconGenerator = GMUDefaultClusterIconGenerator()
@@ -49,7 +51,7 @@ class ViewController: UIViewController {
         locationManager.startUpdatingLocation()
         
         getSpots()
-
+        
         self.view.addSubview(mapView)
         self.view.sendSubviewToBack(mapView)
     }
@@ -119,7 +121,7 @@ class ViewController: UIViewController {
         clusterManager.cluster()
     }
     
-
+    
     func getCenterPoint() -> CLLocationCoordinate2D {
         return mapView.projection.coordinate(for: mapView.center)
     }
@@ -127,9 +129,9 @@ class ViewController: UIViewController {
 extension ViewController: GMSMapViewDelegate {}
 extension ViewController: CLLocationManagerDelegate {
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        print("idle")
+        //        print("idle")
     }
-
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         //  タップしたマーカーかクラスターの位置までマップの中心に移動させる
         mapView.animate(toLocation: marker.position)
@@ -138,18 +140,24 @@ extension ViewController: CLLocationManagerDelegate {
             // zoom in on tapped cluster　カメラをズームさせる
             mapView.animate(toZoom: mapView.camera.zoom + 5)
             return true
+            
         }
         self.pinImage.isHidden = true
         let contentVC = DetailModalViewController() //TopHalfModalViewControllerへ遷移
         contentVC.vc = self //これは何？
-        fpc.set(contentViewController: contentVC) //fpcをセットする？（contentViewControllerはcontentVCを使用する）
-        fpc.layout = DetailFloatingPanelLayout() //fpcのレイアウトはMyFloatingPanelLayoutを使う
-        fpc.isRemovalInteractionEnabled = true //
-        self.dismiss(animated: true, completion: nil)
-        self.present(fpc, animated: true, completion: nil) //フローティングパネルで表示する
+        if let data = marker.userData as? POIItem{
+            
+            contentVC.POItem = data
+            fpc.set(contentViewController: contentVC) //fpcをセットする？（contentViewControllerはcontentVCを使用する）
+            fpc.layout = DetailFloatingPanelLayout() //fpcのレイアウトはMyFloatingPanelLayoutを使う
+            fpc.isRemovalInteractionEnabled = true //
+            self.dismiss(animated: true, completion: nil)
+
+            self.present(fpc, animated: true, completion: nil)//フローティングパネルで表示する         
+        }
         return false
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation = locations.last
         let camera = GMSCameraPosition.camera(withLatitude: userLocation!.coordinate.latitude,
