@@ -55,6 +55,9 @@
                                     <state key="normal" title="編集">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <connections>
+                                        <action selector="editButtonTapped:" destination="-1" eventType="touchUpInside" id="i0Y-E7-bP0"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>

@@ -17,6 +17,15 @@ class DetailModalViewController: UIViewController {
     @IBOutlet weak var tel: UILabel!
     @IBOutlet weak var kokoku: UIView!
     
+    @IBAction func editButtonTapped(_ sender: Any) {
+        let contentVC = EditViewController()
+        contentVC.POItem = POItem
+        let navi = UINavigationController(rootViewController: contentVC)
+        navi.modalPresentationStyle = .overCurrentContext
+        self.present( navi, animated: true, completion: nil)
+        
+    }
+    
     var POItem : POIItem = POIItem(position:CLLocationCoordinate2DMake(0,0), storeName: "", smokingSpace: "", openHour: "", closeHour: "", tel:"")
     
     

@@ -56,6 +56,7 @@ class ViewController: UIViewController {
         self.view.sendSubviewToBack(mapView)
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
         if !UserDefaults.standard.bool(forKey: "agreeBefore"){
             let vc = UINavigationController(rootViewController: AgreeViewController())
@@ -90,7 +91,10 @@ class ViewController: UIViewController {
     }
     
     func getSpots(){
+        self .spotModels = []
+        print(spotModels.count)
         Firestore.firestore().collection("map")
+            
             
             .addSnapshotListener { querySnapshot, error in //変更があったらリアルタイムで更新する
                 guard let snapshot = querySnapshot else { // querySnapshotがあったらsnapshotに代入する
@@ -107,18 +111,21 @@ class ViewController: UIViewController {
                     map.coordinate = document.data()["zahyo"] as? GeoPoint
                     self.spotModels.append(map)
                 }
-                print(self.spotModels)
+                print("getspots")
+//                print(self.spotModels.count)
                 self.generateCluster(MapModels:self.spotModels)
             }
     }
     
     func generateCluster(MapModels:[MapModel]){
+        clusterManager.clearItems()
         MapModels.forEach { (Mapmodel) in
             let item = POIItem(position: CLLocationCoordinate2DMake(Mapmodel.coordinate?.latitude ?? 0, Mapmodel.coordinate?.longitude ?? 0), storeName: Mapmodel.storeName, smokingSpace: Mapmodel.smokingSpace, openHour: Mapmodel.openHour, closeHour: Mapmodel.closeHour, tel: Mapmodel.tel)
             clusterManager.add(item)
             print(item.position)
         }
         clusterManager.cluster()
+        
     }
     
     
