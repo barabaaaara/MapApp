@@ -9,12 +9,14 @@ import Foundation
 import Firebase
 
 class MapModel: NSObject{
+    var id:String = ""
     var storeName: String = ""
     var smokingSpace: String = ""
     var openHour: String = ""
     var closeHour: String = ""
     var tel: String = ""
     var coordinate: GeoPoint?
+
     
     
     

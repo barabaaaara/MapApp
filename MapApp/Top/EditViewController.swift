@@ -12,14 +12,29 @@ import Firebase
 
 class EditViewController: UIViewController {
     
+    @IBOutlet weak var deleteButton: UIButton!
     var cancelBarButtonItem : UIBarButtonItem!
     var sendBarButtonItem : UIBarButtonItem!
-    var POItem : POIItem = POIItem(position:CLLocationCoordinate2DMake(0,0), storeName: "", smokingSpace: "", openHour: "", closeHour: "", tel:"")
+    var POItem : POIItem = POIItem(position:CLLocationCoordinate2DMake(0,0), storeName: "", smokingSpace: "", openHour: "", closeHour: "", tel:"", id: "")
     
     @IBOutlet weak var storeName: UITextField!
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        Firestore.firestore().collection("map").document(POItem.id).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        deleteButton.layer.cornerRadius = 16.0
+        deleteButton.layer.borderWidth = 1
+        deleteButton.layer.borderColor = UIColor.systemRed.cgColor
         
         self .storeName.text = POItem.storeName
         
@@ -33,6 +48,7 @@ class EditViewController: UIViewController {
         
         print("add")
         print(POItem.storeName)
+        print(Double(POItem.position.latitude))
         
         // Do any additional setup after loading the view.
     }
@@ -42,23 +58,22 @@ class EditViewController: UIViewController {
     @objc func saveBarButtonTapped(_ sender:UIBarButtonItem){
         let mapModel:MapModel = MapModel()
         mapModel.storeName = self.storeName.text!
-        //        mapModel.smokingSpace = self.smokingSpace.text!
-        //        mapModel.openHour = self.openHour.text!
-        //        mapModel.closeHour = self.closeHour.text!
-        //        mapModel.tel = self.tel.text!
-        //
-        //
-        //        if storeName.text?.count ==  0{
-        //            alert(message: "店名が未入力です")
-        //            return
-        
-        Firestore.firestore().collection("map").document("0hPBxT724TidfjvVdVfD").updateData([
+//                mapModel.smokingSpace = self.smokingSpace.text!
+//                mapModel.openHour = self.openHour.text!
+//                mapModel.closeHour = self.closeHour.text!
+//                mapModel.tel = self.tel.text!
+//
+//
+//                if storeName.text?.count ==  0{
+//                    alert(message: "店名が未入力です")
+//                    return
+//
+        Firestore.firestore().collection("map").document(POItem.id).updateData([
             "storeName": mapModel.storeName,
-//            "smokingSpace": mapModel.smokingSpace,
-//            "openHour": mapModel.openHour,
-//            "closeHour": mapModel.closeHour,
-//            "tel": mapModel.tel,
-//            "zahyo": GeoPoint(latitude:Double(latitude) ?? 0, longitude: Double(longitude) ?? 0)
+            "smokingSpace": mapModel.smokingSpace,
+            "openHour": mapModel.openHour,
+            "closeHour": mapModel.closeHour,
+            "tel": mapModel.tel,
             
         ]) { err in
             if let err = err {

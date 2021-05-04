@@ -91,18 +91,19 @@ class ViewController: UIViewController {
     }
     
     func getSpots(){
-        self .spotModels = []
-        print(spotModels.count)
         Firestore.firestore().collection("map")
-            
-            
             .addSnapshotListener { querySnapshot, error in //変更があったらリアルタイムで更新する
                 guard let snapshot = querySnapshot else { // querySnapshotがあったらsnapshotに代入する
                     print("Error fetching document: \(error!)")//なかったらエラー文出して処理を打ち切る
                     return
                 }
+                self.dismiss(animated: true, completion: nil)
+                self.pinImage.isHidden = true
+                self.spotModels = [] //addSnapshotListenerが起動するたびにspotmodelsの配列内を空にする
                 snapshot.documents.forEach{document in //受け取った全てのdocumetsに対してforEach構文を使う。そのうちの一つをdocumentとして定義する
+                    print(document.documentID)
                     let map = MapModel() //MapModelをインスタンス化。使える状態にする。たい焼きみたいなやつ（あくまでも型を作っている状態で下記に実際にデータをいれる）
+                    map.id = document.documentID
                     map.storeName = document.data()["storeName"] as? String ?? ""
                     map.smokingSpace = document.data()["smokingSpace"] as? String ?? ""
                     map.openHour = document.data()["openHour"] as? String ?? ""
@@ -111,18 +112,17 @@ class ViewController: UIViewController {
                     map.coordinate = document.data()["zahyo"] as? GeoPoint
                     self.spotModels.append(map)
                 }
-                print("getspots")
-//                print(self.spotModels.count)
                 self.generateCluster(MapModels:self.spotModels)
             }
-    }
+        }
+
+
     
     func generateCluster(MapModels:[MapModel]){
         clusterManager.clearItems()
         MapModels.forEach { (Mapmodel) in
-            let item = POIItem(position: CLLocationCoordinate2DMake(Mapmodel.coordinate?.latitude ?? 0, Mapmodel.coordinate?.longitude ?? 0), storeName: Mapmodel.storeName, smokingSpace: Mapmodel.smokingSpace, openHour: Mapmodel.openHour, closeHour: Mapmodel.closeHour, tel: Mapmodel.tel)
+            let item = POIItem(position: CLLocationCoordinate2DMake(Mapmodel.coordinate?.latitude ?? 0, Mapmodel.coordinate?.longitude ?? 0), storeName: Mapmodel.storeName, smokingSpace: Mapmodel.smokingSpace, openHour: Mapmodel.openHour, closeHour: Mapmodel.closeHour, tel: Mapmodel.tel, id:Mapmodel.id)
             clusterManager.add(item)
-            print(item.position)
         }
         clusterManager.cluster()
         

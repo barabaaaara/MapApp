@@ -26,7 +26,7 @@ class DetailModalViewController: UIViewController {
         
     }
     
-    var POItem : POIItem = POIItem(position:CLLocationCoordinate2DMake(0,0), storeName: "", smokingSpace: "", openHour: "", closeHour: "", tel:"")
+    var POItem : POIItem = POIItem(position:CLLocationCoordinate2DMake(0,0), storeName: "", smokingSpace: "", openHour: "", closeHour: "", tel:"", id: "")
     
     
     var fpc = FloatingPanelController() //フローティングパネルのフレームワークの定義
