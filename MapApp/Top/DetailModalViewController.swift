@@ -8,6 +8,7 @@
 import UIKit
 import FloatingPanel
 import GoogleMapsUtils
+import GoogleMobileAds
 
 class DetailModalViewController: UIViewController {
     @IBOutlet weak var adress: UILabel!
@@ -15,7 +16,7 @@ class DetailModalViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var businessHour: UILabel!
     @IBOutlet weak var tel: UILabel!
-    @IBOutlet weak var kokoku: UIView!
+    var bannerView: GADBannerView!
     
     @IBAction func editButtonTapped(_ sender: Any) {
         let contentVC = EditViewController()
@@ -31,7 +32,7 @@ class DetailModalViewController: UIViewController {
     
     var fpc = FloatingPanelController() //フローティングパネルのフレームワークの定義
     var vc: ViewController = ViewController()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         editButton.layer.cornerRadius = 16.0
@@ -40,17 +41,34 @@ class DetailModalViewController: UIViewController {
         self.tel.text = POItem.tel
         self.businessHour.text = POItem.openHour + "~" + POItem.closeHour
         print(POItem)
+        
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
     }
-    */
-
+   
 }

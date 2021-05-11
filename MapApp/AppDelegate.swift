@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import GoogleMaps
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
+        
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+
         return true
     }
 }

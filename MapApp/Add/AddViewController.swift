@@ -18,6 +18,8 @@ class AddViewController: UIViewController,CLLocationManagerDelegate, GMSMapViewD
     var sendBarButtonItem : UIBarButtonItem!
     var longitude : String = ""
     var latitude : String = ""
+    var zoom :Float = 20.0
+    
     var locationManager = CLLocationManager()
     lazy var mapView = GMSMapView()
     @IBOutlet weak var addMapView: UIView!
@@ -38,8 +40,7 @@ class AddViewController: UIViewController,CLLocationManagerDelegate, GMSMapViewD
         
         
         
-        let camera = GMSCameraPosition.camera(withLatitude: Double(latitude) ?? 0, longitude: Double(longitude) ?? 0, zoom: 10.0)
-        
+        let camera = GMSCameraPosition.camera(withLatitude: Double(latitude) ?? 0, longitude: Double(longitude) ?? 0, zoom: zoom)
         
         
         mapView = GMSMapView.map(withFrame: CGRect(origin: .zero, size: addMapView.bounds.size), camera: camera)

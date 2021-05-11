@@ -36,6 +36,7 @@ class TopHalfModalViewController: UIViewController{
         let contentVC = AddViewController() //addViewContorollerに遷移
         contentVC.longitude = vc.getCenterPoint().longitude.description
         contentVC.latitude = vc.getCenterPoint().latitude.description
+        contentVC.zoom = vc.getZoomLevel()
         let navi = UINavigationController(rootViewController: contentVC)
         navi.modalPresentationStyle = .overCurrentContext
         self.present(navi, animated: true, completion: nil)

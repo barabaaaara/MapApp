@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     var mapView = GMSMapView() //lazyって何？？　インポートしたGooglemapsを定義してる
     var latitude: String? //緯度は”String型だと定義している”
     var longitude: String? //経度は”String型だと定義している”
-    var zoomLevel: String?
+    var zoom: Float?
     var spotModels: [MapModel] = []//MapModelが複数ある配列をspotModelsとして定義
     @IBOutlet weak var pinImage: UIImageView!
     @IBOutlet weak var registerButton: UIButton!
@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         mapView = GMSMapView.map(withFrame: CGRect(origin: .zero, size: view.bounds.size), camera: camera)
         mapView.settings.myLocationButton = true //右下のボタン追加する
         self.mapView.padding = UIEdgeInsets (top: 0, left: 0, bottom: 20, right: 15)
+        print(mapView.camera.zoom)
         //        let botPadding = self.view.frame.size.height - self.bookButton.frame.origin.y
         //        self.mapView.padding = UIEdgeInsetsMake(0, 0, botPadding,0)//ボタンの位置は調整できないが内面の幅（padding）で調整ができる。
         mapView.isMyLocationEnabled = true
@@ -131,6 +132,9 @@ class ViewController: UIViewController {
     
     func getCenterPoint() -> CLLocationCoordinate2D {
         return mapView.projection.coordinate(for: mapView.center)
+    }
+    func getZoomLevel() -> Float {
+        return mapView.camera.zoom
     }
 }
 extension ViewController: GMSMapViewDelegate {}

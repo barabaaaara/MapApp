@@ -9,7 +9,8 @@ target 'MapApp' do
   pod 'GooglePlaces'
   pod 'FloatingPanel'
   pod 'Google-Maps-iOS-Utils'
-
+  pod 'Google-Mobile-Ads-SDK'
+ 
   # Pods for MapApp
 
   target 'MapAppTests' do
