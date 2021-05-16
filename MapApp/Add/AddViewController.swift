@@ -9,10 +9,20 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import Firebase
-
+import FloatingPanel
 
 class AddViewController: UIViewController,CLLocationManagerDelegate, GMSMapViewDelegate{
     
+    var fpc = FloatingPanelController() //FlotingPanelを定義
+    
+    @IBAction func selectButtonTapped(_ sender: Any) {
+        let contentVC = SmokingAreaViewController() //TopHalfModalViewControllerへ遷移
+        fpc.set(contentViewController: contentVC) //fpcをセットする？（contentViewControllerはcontentVCを使用する）
+        fpc.layout = MyFloatingPanelLayout() //fpcのレイアウトはMyFloatingPanelLayoutを使う
+        fpc.isRemovalInteractionEnabled = true //
+        self.present(fpc, animated: true, completion: nil) //フローティングパネルで表示する
+        
+    }
     @IBOutlet weak var selectButton : UIButton!
     var cancelBarButtonItem : UIBarButtonItem!
     var sendBarButtonItem : UIBarButtonItem!
@@ -23,15 +33,18 @@ class AddViewController: UIViewController,CLLocationManagerDelegate, GMSMapViewD
     var locationManager = CLLocationManager()
     lazy var mapView = GMSMapView()
     @IBOutlet weak var addMapView: UIView!
-    
-    
-    
     @IBOutlet weak var storeName: UITextField!
     @IBOutlet weak var smokingSpace: UILabel!
     @IBOutlet weak var openHour: UITextField!
     @IBOutlet weak var closeHour: UITextField!
     @IBOutlet weak var tel: UITextField!
+    let smokingAreaLabelArray = ["全面喫煙可能店","居酒屋・レストラン・カフェ等","バー・スナック・シガーバー等","喫煙専用室設置店"]
+    let smokingAreaDescriptionArray = ["喫煙専用室","喫煙可能店","喫煙目的店","喫煙専用室"]
+    let smokingAreaImageArray = ["喫煙専用室","喫煙可能店","喫煙目的店","喫煙専用室"]
     
+    @IBOutlet weak var smokingAreaImage: UIImageView!
+    @IBOutlet weak var smokingAreaLabel: UILabel!
+    @IBOutlet weak var smokingAreaDescription: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -14,7 +14,9 @@
                 <outlet property="closeHour" destination="40B-Bt-dGj" id="cIN-Dt-1v2"/>
                 <outlet property="openHour" destination="jfR-Am-n54" id="9Kg-O4-0j9"/>
                 <outlet property="selectButton" destination="XbF-w4-2gB" id="De9-Lf-HfB"/>
-                <outlet property="smokingSpace" destination="OMT-65-9Kv" id="hx1-bz-4Ku"/>
+                <outlet property="smokingAreaDescription" destination="LuS-nN-LLf" id="FG2-6v-oAe"/>
+                <outlet property="smokingAreaImage" destination="u8f-Q0-qNl" id="mK9-ne-Y0O"/>
+                <outlet property="smokingAreaLabel" destination="hHc-j8-DNn" id="qh7-Jg-BUs"/>
                 <outlet property="storeName" destination="AgA-JH-cUH" id="XQm-Xg-ZJh"/>
                 <outlet property="tel" destination="pBG-GI-XQN" id="QLe-FD-YJ7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="SNR-MH-2jz"/>
@@ -71,12 +73,54 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oHP-BV-gse">
                                     <rect key="frame" x="0.0" y="39" width="382" height="35"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選択されていません" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMT-65-9Kv">
-                                            <rect key="frame" x="0.0" y="0.0" width="326" height="35"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選択されていません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNZ-5A-YC8">
+                                            <rect key="frame" x="0.0" y="0.0" width="156" height="35"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ork-AP-6kV">
+                                            <rect key="frame" x="156" y="0.0" width="40" height="35"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="喫煙専用室" translatesAutoresizingMaskIntoConstraints="NO" id="u8f-Q0-qNl">
+                                                    <rect key="frame" x="0.0" y="-2.5" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="6l3-P3-YQm"/>
+                                                        <constraint firstAttribute="width" constant="40" id="wjd-zg-X2k"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="u8f-Q0-qNl" firstAttribute="centerX" secondItem="ork-AP-6kV" secondAttribute="centerX" id="3Ze-Qh-eaq"/>
+                                                <constraint firstItem="u8f-Q0-qNl" firstAttribute="centerY" secondItem="ork-AP-6kV" secondAttribute="centerY" id="Iak-6N-VI0"/>
+                                                <constraint firstAttribute="width" constant="40" id="V9C-Rh-Mdr"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRB-Ih-lVX">
+                                            <rect key="frame" x="196" y="0.0" width="4" height="35"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="4" id="ojn-1U-zPj"/>
+                                            </constraints>
+                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="8IX-cG-Srd">
+                                            <rect key="frame" x="200" y="0.0" width="126" height="35"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="喫煙専用室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHc-j8-DNn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="タバコを吸うためのだけの部屋あり" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LuS-nN-LLf">
+                                                    <rect key="frame" x="0.0" y="23.5" width="126" height="11.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbF-w4-2gB">
                                             <rect key="frame" x="326" y="0.0" width="56" height="35"/>
                                             <color key="backgroundColor" red="0.27378180619999998" green="0.49543273450000003" blue="0.89808064700000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -88,6 +132,9 @@
                                             <state key="normal" title="選択">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="selectButtonTapped:" destination="-1" eventType="touchUpInside" id="UKq-cy-iio"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -173,6 +220,7 @@
         </view>
     </objects>
     <resources>
+        <image name="喫煙専用室" width="40" height="40"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

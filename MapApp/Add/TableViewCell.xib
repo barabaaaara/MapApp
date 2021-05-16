@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="MapApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gko-6t-Oza">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpJ-Ko-vpu">
+                                <rect key="frame" x="0.0" y="0.0" width="18" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radioButton" translatesAutoresizingMaskIntoConstraints="NO" id="4FZ-aZ-ZpG">
+                                        <rect key="frame" x="0.0" y="11" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="YuD-Cf-3Dz"/>
+                                            <constraint firstAttribute="width" constant="18" id="rA2-oh-ngQ"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="CYO-MS-dHS"/>
+                                    <constraint firstItem="4FZ-aZ-ZpG" firstAttribute="centerX" secondItem="kpJ-Ko-vpu" secondAttribute="centerX" id="HAM-VR-nfE"/>
+                                    <constraint firstAttribute="height" constant="40" id="trg-y3-Mvg"/>
+                                    <constraint firstItem="4FZ-aZ-ZpG" firstAttribute="centerY" secondItem="kpJ-Ko-vpu" secondAttribute="centerY" id="zDZ-Pf-cEM"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ree-W3-Ifc">
+                                <rect key="frame" x="18" y="0.0" width="7" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="7" id="ZCO-Tv-RSe"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="allOK" translatesAutoresizingMaskIntoConstraints="NO" id="7Py-FL-5rI">
+                                <rect key="frame" x="25" y="0.0" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="dpX-rr-qfz"/>
+                                    <constraint firstAttribute="width" constant="40" id="nhk-9v-Pse"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vzn-AE-9jL">
+                                <rect key="frame" x="65" y="0.0" width="4" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="4" id="hu6-V5-5QX"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6Kf-Oc-9zc">
+                                <rect key="frame" x="69" y="0.0" width="251" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="全面喫煙可能店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHF-7O-EPj">
+                                        <rect key="frame" x="0.0" y="0.0" width="251" height="19"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="喫煙専用室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koD-kW-Cno">
+                                        <rect key="frame" x="0.0" y="23" width="251" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" systemColor="systemGray3Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="gko-6t-Oza" secondAttribute="bottom" constant="12" id="2lV-Yp-PpQ"/>
+                    <constraint firstItem="gko-6t-Oza" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ARf-1H-qNk"/>
+                    <constraint firstAttribute="trailing" secondItem="gko-6t-Oza" secondAttribute="trailing" id="W2d-0d-1nB"/>
+                    <constraint firstItem="gko-6t-Oza" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ztM-PL-FfH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="radioButtonImage" destination="4FZ-aZ-ZpG" id="yEw-Cn-ML7"/>
+                <outlet property="smokingAreaDiscription" destination="koD-kW-Cno" id="gKw-x4-cbG"/>
+                <outlet property="smokingAreaImage" destination="7Py-FL-5rI" id="UTh-ac-IlL"/>
+                <outlet property="smokingAreaLabel" destination="CHF-7O-EPj" id="ouF-Nt-gzq"/>
+            </connections>
+            <point key="canvasLocation" x="68" y="76"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="allOK" width="40" height="40"/>
+        <image name="radioButton" width="18" height="18"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
